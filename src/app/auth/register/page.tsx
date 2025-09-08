@@ -50,8 +50,8 @@ const formSchema = z
 // the data type from the register form
 type registerSchema = z.infer<typeof formSchema>;
 export default function RegisterPage() {
-  const passwordValue = useRef(null);
-  const [hideFormat, setHideFormat] = useState(null);
+  const passwordValue = useRef<HTMLInputElement | null>(null);
+  const [hideFormat, setHideFormat] = useState<boolean | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
@@ -150,7 +150,7 @@ export default function RegisterPage() {
                 <FormLabel>Password</FormLabel>
                 <FormControl
                   onChange={() =>
-                    passwordValue.current?.value === ""
+                    passwordValue?.current?.value
                       ? setHideFormat(null)
                       : setHideFormat(true)
                   }
@@ -159,13 +159,13 @@ export default function RegisterPage() {
                     placeholder="*********"
                     {...field}
                     type="password"
-                    // ref={passwordValue}
+                    ref={passwordValue}
                   />
                 </FormControl>
                 <FormMessage />
                 <div
                   className={`flex justify-center mt-2 ${
-                    hideFormat === null ? `hidden` : ``
+                    hideFormat === null ? `` : `hidden`
                   }`}
                 >
                   <ul className="list-disc bg-zinc-100 list-inside w-80 p-3 rounded-2xl text-zinc-500 text-sm font-semibold tracking-wide">
