@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 
 // import {
 //   Carousel,
@@ -19,7 +19,6 @@ import ProductCardsContainer from "./(main)/products/_components/ProductCardsCon
 import ProductsSkeleton from "./(main)/products/_components/ProductsSkeleton";
 import LogoLoop from "./_components/(animation)/LogoLoop";
 import MainCarousel from "./_components/MainCarousel";
-import { getUserWishlist } from "@/lib/services/wishlist";
 export default async function Home() {
   const products = await getAllProducts();
   const allBrands = await getAllBrands();
