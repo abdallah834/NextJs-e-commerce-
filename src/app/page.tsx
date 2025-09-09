@@ -54,7 +54,7 @@ export default async function Home() {
           ariaLabel="Our partners"
         />
       </div>
-      <div className="flex items-center justify-center pt-6">
+      <div className="flex items-center justify-center mt-6">
         <MainCarousel />
       </div>
       <AllCategories categories={allCategories} />

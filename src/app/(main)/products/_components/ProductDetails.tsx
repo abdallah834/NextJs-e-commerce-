@@ -90,7 +90,7 @@ export default function ProductDetails({ product }: { product: IProduct }) {
               ) : null}
             </span>
             <span className="text-xl ms-2 mb-2 font-semibold">{`${data.ratingsAverage}/5`}</span>
-            <span className="text-sm min-[360px]:text-xs min-[540px]:text-sm sm:text-md ms-3 mb-2 font-semibold text-zinc-400">{`(${data.ratingsQuantity} reviews) `}</span>
+            <span className="text-sm min-[340px]:text-xs min-[540px]:text-sm sm:text-md ms-3 mb-2 font-semibold text-zinc-400">{`(${data.ratingsQuantity} reviews) `}</span>
           </div>
           {/********************* Price ********************/}
           <span className="block text-3xl font-bold">{`${data.price} EGP`}</span>
@@ -99,7 +99,7 @@ export default function ProductDetails({ product }: { product: IProduct }) {
           <p className="font-semibold mb-2 text-center">{data.description}</p>
           {/********************* Stock info ********************/}
           <div className="flex justify-around bg-zinc-100 p-4 rounded-full">
-            <div className="stocks-container flex items-center gap-5">
+            <div className="stocks-container flex items-center gap-5 text-sm font-semibold">
               <Icon icon="vaadin:stock" className="text-zinc-600 text-3xl" />
               <div>
                 <span className="block text-zinc-600">Available stock</span>
@@ -111,12 +111,12 @@ export default function ProductDetails({ product }: { product: IProduct }) {
                 icon="stash:chart-trend-up"
                 className="text-zinc-600 text-5xl"
               />
-              <div>
+              <div className="text-sm font-semibold">
                 <span className="block text-zinc-600">Total sold</span>
                 <span className="block break-all">{`${
                   data.sold === null
                     ? `0 Units`
-                    : // formatting the first 4 numbers returned from api
+                    : // formatting the first 3 numbers returned from api
                       `${Math.ceil(
                         Number(String(soldAmount).slice(0, 4))
                       )} Units`
@@ -125,7 +125,7 @@ export default function ProductDetails({ product }: { product: IProduct }) {
             </div>
           </div>
           {/********************* Brand & Category ********************/}
-          <div className="flex justify-between items-center flex-col lg:flex-col gap-4">
+          <div className="flex justify-between items-center flex-col lg:flex-col gap-9">
             <div className="brand-category flex items-center flex-col lg:flex-row gap-2">
               <span className="flex items-center gap-1 font-semibold ">
                 Brand:
@@ -146,10 +146,10 @@ export default function ProductDetails({ product }: { product: IProduct }) {
               </div>
             </div>
             {/********************* last-updated ********************/}
-            <div className="updated-status flex gap-4">
-              <div className="last-updated flex items-center gap-2">
-                <Icon icon="uil:calender" className="text-zinc-500" />
-                <span className="text-zinc-500">
+            <div className="updated-status flex gap-4 justify-center items-center">
+              <div className="last-added flex items-center gap-1">
+                <Icon icon="uil:calender" className="text-zinc-500 text-xl" />
+                <span className="text-zinc-500 text-center">
                   Added:{" "}
                   {`${new Intl.DateTimeFormat("en-US", {
                     day: "2-digit",
@@ -158,9 +158,9 @@ export default function ProductDetails({ product }: { product: IProduct }) {
                   }).format(new Date(data.createdAt))}`}
                 </span>
               </div>
-              <div className="last-updated flex items-center gap-2">
-                <Icon icon="uil:calender" className="text-zinc-500" />
-                <span className="text-zinc-500">
+              <div className="last-updated flex items-center gap-1">
+                <Icon icon="uil:calender" className="text-zinc-500 text-xl" />
+                <span className="text-zinc-500 text-center">
                   Updated:{" "}
                   {`${new Intl.DateTimeFormat("en-US", {
                     day: "2-digit",

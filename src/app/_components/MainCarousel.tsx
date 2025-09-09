@@ -21,7 +21,7 @@ export default function MainCarousel() {
   return (
     <Slider
       {...settings}
-      className="w-[310px] min-[424]:w-[410px] min-[469px]:w-[450px] sm:w-xl md:w-2xl lg:w-4xl xl:w-6xl"
+      className="w-[325px] min-[424]:w-[410px] min-[469px]:w-[450px] sm:w-xl md:w-2xl lg:w-4xl xl:w-6xl"
     >
       <div>
         <Image
