@@ -1,3 +1,4 @@
+"use client";
 import { IProduct } from "@/app/types/products.type";
 import Image from "next/image";
 import {
@@ -9,13 +10,34 @@ import {
 } from "@/components/ui/carousel";
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
 import { Button } from "@/components/ui/button";
+import { getSessionToken } from "@/lib/server-utils";
+import { addToCart, getCartData } from "@/lib/services/cart";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { useCart } from "@/app/(context)/CartContextProvider";
 
-export default async function ProductDetails({
-  product,
-}: {
-  product: IProduct;
-}) {
-  const data = await product;
+export default function ProductDetails({ product }: { product: IProduct }) {
+  const data = product;
+  const { getUserCart } = useCart();
+
+  const router = useRouter();
+  const { status: userStatus } = useSession();
+  async function handleAddToCart(productId: string) {
+    if (userStatus === "authenticated") {
+      // having await inside of the toast.promise doesn't display loading message therefore await should be with the toast.promise
+      await toast.promise(addToCart(productId), {
+        loading: "Adding product to cart",
+        success: "Product added",
+        error: "Failed to add product",
+      });
+      await getUserCart();
+    } else if (userStatus === "unauthenticated") {
+      // always make sure to import from next/navigation
+      router.push("/auth/login");
+    }
+  }
+
   return (
     <>
       <div className="container mx-auto mt-10 flex flex-col min-[1100px]:flex-row justify-center gap-24 items-center">
@@ -67,7 +89,7 @@ export default async function ProductDetails({
               ) : null}
             </span>
             <span className="text-xl ms-2 mb-2 font-semibold">{`${data.ratingsAverage}/5`}</span>
-            <span className="text-sm sm:text-md ms-3 mb-2 font-semibold text-zinc-400">{`(${data.ratingsQuantity} reviews) `}</span>
+            <span className="text-sm min-[360px]:text-xs min-[540px]:text-sm sm:text-md ms-3 mb-2 font-semibold text-zinc-400">{`(${data.ratingsQuantity} reviews) `}</span>
           </div>
           {/********************* Price ********************/}
           <span className="block text-3xl font-bold">{`${data.price} EGP`}</span>
@@ -144,6 +166,7 @@ export default async function ProductDetails({
           <Button
             className="group cursor-pointer rounded-lg text-lg hover:scale-[1.01] *:transition-all *:duration-300 transition duration-300 bg-zinc-300 hover:bg-linear-90  hover:from-white hover:from-[-30%] hover:via-black hover:via-50% hover:to-white hover:to-130% flex py-6"
             variant={"outline"}
+            onClick={() => handleAddToCart(product.id)}
           >
             <span className="group-hover:text-white font-bold flex items-center gap-4">
               <Icon
