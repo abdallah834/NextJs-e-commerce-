@@ -19,6 +19,7 @@ import { useCart } from "@/app/(context)/CartContextProvider";
 
 export default function ProductDetails({ product }: { product: IProduct }) {
   const data = product;
+  const soldAmount = data.sold;
   const { getUserCart } = useCart();
 
   const router = useRouter();
@@ -113,7 +114,12 @@ export default function ProductDetails({ product }: { product: IProduct }) {
               <div>
                 <span className="block text-zinc-600">Total sold</span>
                 <span className="block break-all">{`${
-                  data.sold === null ? `0 Units` : `${data.sold} Units`
+                  data.sold === null
+                    ? `0 Units`
+                    : // formatting the first 4 numbers returned from api
+                      `${Math.ceil(
+                        Number(String(soldAmount).slice(0, 4))
+                      )} Units`
                 }`}</span>
               </div>
             </div>
