@@ -112,7 +112,9 @@ export default function ProductDetails({ product }: { product: IProduct }) {
               />
               <div>
                 <span className="block text-zinc-600">Total sold</span>
-                <span className="block">{`${data.sold} Units`}</span>
+                <span className="block break-all">{`${
+                  data.sold === null ? `0 Units` : `${data.sold} Units`
+                }`}</span>
               </div>
             </div>
           </div>
