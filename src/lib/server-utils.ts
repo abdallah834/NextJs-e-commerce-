@@ -8,7 +8,7 @@ export async function getSessionToken() {
   // cookies has to be used within a server component to be accessed.
   // in production the next-auth cookies session changes to __secure-next....
   const sessionToken = (await cookies()).get(
-    "__secure-next-auth.session-token"
+    "__Secure-next-auth.session-token"
   )?.value;
   const decodedToken = await decode({
     token: sessionToken,
