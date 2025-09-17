@@ -32,7 +32,6 @@ export default function Login() {
   // make sure to import useRouter from next/navigation
   const router = useRouter();
   async function onSubmitForm(data: loginSchema) {
-    console.log(data);
     // to link next auth signin page with our custom we use signIn function from next-auth/react
     const userResponse = await signIn("credentials", {
       email: data.email,
@@ -41,7 +40,7 @@ export default function Login() {
       callbackUrl: "/",
       redirect: false,
     });
-    console.log(userResponse);
+
     if (!userResponse?.ok) {
       toast.error(userResponse?.error);
     } else {

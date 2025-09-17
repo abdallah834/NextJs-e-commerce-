@@ -21,7 +21,6 @@ export default function page() {
     }
     getProductsInit();
   }, []);
-  console.log(products);
 
   return (
     <>

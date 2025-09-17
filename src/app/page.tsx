@@ -21,11 +21,8 @@ export default async function Home() {
   const products = await getAllProducts();
   const allBrands = await getAllBrands();
   // const metaData = data?.metadata;
-  // console.log(products);
-  // console.log(allBrands);
   const allCategories = await getAllCategories();
   // const { getUserCart } = useCart();
-
   const imgsArr: IFeaturedImages[] = [];
   const imageLogos = allBrands?.data.map((brand: IProduct, index: number) => {
     imgsArr.push({

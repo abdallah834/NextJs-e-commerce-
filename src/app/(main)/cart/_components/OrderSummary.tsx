@@ -48,7 +48,6 @@ export default function OrderSummary() {
       });
     } else {
       const creditResponse = await checkOutCredit(address, cartData?.cartId);
-      console.log("credit", creditResponse);
     }
   }
   return (

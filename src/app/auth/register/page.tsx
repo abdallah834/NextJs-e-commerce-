@@ -67,7 +67,6 @@ export default function RegisterPage() {
   });
   // submit function has to be async
   async function onSubmitForm(data: registerSchema) {
-    console.log(data);
     // to link next auth signin page with our custom we use signIn function from next-auth/react
     try {
       setIsLoading(true);

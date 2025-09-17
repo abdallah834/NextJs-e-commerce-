@@ -54,7 +54,7 @@ export default function UserCart() {
     }
   }
   let count = 1;
-  console.log(count++);
+
   return (
     <div className="container mx-auto">
       <div className="flex justify-between mt-10">

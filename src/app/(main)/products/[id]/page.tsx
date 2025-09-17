@@ -8,13 +8,11 @@ export default async function page({ params }: { params: { id: string } }) {
   const paramsResponse = await params;
   const id = await paramsResponse.id;
   const details = await getProductDetails(id);
-  console.log(details);
   // filtering all products to display in the related products section
   const allProducts = await getAllProducts();
   const filteredProducts = allProducts.filter((product: IProduct) =>
     product.category.name.includes(details.category.name)
   );
-  console.log(filteredProducts);
   return (
     <>
       <ProductDetails product={details} />

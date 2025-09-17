@@ -84,8 +84,7 @@ export default function WishListContextProvider({
       toast.error(`${error}`);
     }
   }
-  console.log(wishedIds);
-  console.log(wishListItems);
+
   const data = {
     wishListItems,
     setWishListItems,

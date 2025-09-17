@@ -12,7 +12,6 @@ export default function Electronics({
   const electronics = products?.filter(
     (product: IProduct) => product.category.name === "Electronics"
   );
-  console.log(electronics);
 
   return (
     <>

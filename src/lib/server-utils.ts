@@ -7,9 +7,7 @@ export async function getSessionToken() {
   // getting cookies using next/headers
   // cookies has to be used within a server component to be accessed.
   // in production the next-auth cookies session changes to __secure-next....
-  const sessionToken = (await cookies()).get(
-    "__Secure-next-auth.session-token"
-  )?.value;
+  const sessionToken = (await cookies()).get("next-auth.session-token")?.value;
   const decodedToken = await decode({
     token: sessionToken,
     // the ! means that it won't return undefined to solve an undefined error
